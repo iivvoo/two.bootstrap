@@ -24,27 +24,29 @@
     <div class="topbar">
       <div class="fill">
         <div class="container">
-          <a class="brand" href="/">QRnl</a>
+          {% block topbar %}
+            <a class="brand" href="/">2bootstrap</a>
 
-          <ul class="nav">
-            <li class="active"><a href="/manage/">Home</a></li>
-            <li><a href="http://blog.qr.nl">Blog</a></li>
-            <li><a href="/about">About</a></li>
-            <li><a href="/contact">Contact</a></li>
-          </ul>
-          <div class="pull-right">
-            {% if user.is_anonymous %}
             <ul class="nav">
-              <li><a href="/signup/">Aanmelden</a></li>
-              <li><a href="/login/">Inloggen</a></li>
+              <li class="active"><a href="/manage/">Home</a></li>
+              <li><a href="#">Blog</a></li>
+              <li><a href="/about">About</a></li>
+              <li><a href="/contact">Contact</a></li>
             </ul>
-            {% else %}
-            <ul class="nav">
-              <li><a href="/manage/">{{user}}</a></li>
-              <li><a href="/login/logout">Uitloggen</a></li>
-            </ul>
-            {% endif %}
-          </div>
+            <div class="pull-right">
+              {% if user.is_anonymous %}
+              <ul class="nav">
+                <li><a href="/signup/">Aanmelden</a></li>
+                <li><a href="/login/">Inloggen</a></li>
+              </ul>
+              {% else %}
+              <ul class="nav">
+                <li><a href="/manage/">{{user}}</a></li>
+                <li><a href="/login/logout">Uitloggen</a></li>
+              </ul>
+              {% endif %}
+            </div>
+          {% endblock %}
         </div>
       </div>
     </div>
@@ -83,19 +85,20 @@
           <h1>{% block title %}{% endblock %}</h1>
         </div>
         <div class="row">
-          <div class="span14">
-            {% block main %}
-            {% endblock %}
-          </div>
+          {% block base_main %}
+            <div class="span16">
+              {% block main %}
+              {% endblock %}
+            </div>
+          {% endblock %}
         </div>
       </div>
 
       <footer>
-        <p>&copy; qr.nl 2011</p>
-
+        {% block base_footer %}
+        <p>&copy; m3r 2011</p>
+        {% endblock %}
       </footer>
-
-    </div> <!-- /container -->
-
+    </div> 
 </body>
 </html>
