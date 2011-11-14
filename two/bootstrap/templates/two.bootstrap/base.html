@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset=utf-8">
+    <title>QR</title>
+
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css" media="screen, projection, print"/>
+    <link rel="stylesheet" href="/static/css/qr.css" media="screen, projection, print"/>
+    <script src="/static/js/jquery-1.7.min.js"></script>
+    <script src="/static/js/bootstrap-alerts.js"></script>
+    <script src="/static/js/qr.js"></script>
+    {% block javascript %}
+    {% endblock %}
+    <script type="text/javascript" charset="utf-8">
+    {% block inline_javascript %}
+    {% endblock %}
+    </script>
+</head>
+<body>
+    <div class="topbar">
+      <div class="fill">
+        <div class="container">
+          <a class="brand" href="/">QRnl</a>
+
+          <ul class="nav">
+            <li class="active"><a href="/manage/">Home</a></li>
+            <li><a href="http://blog.qr.nl">Blog</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/contact">Contact</a></li>
+          </ul>
+          <div class="pull-right">
+            {% if user.is_anonymous %}
+            <ul class="nav">
+              <li><a href="/signup/">Aanmelden</a></li>
+              <li><a href="/login/">Inloggen</a></li>
+            </ul>
+            {% else %}
+            <ul class="nav">
+              <li><a href="/manage/">{{user}}</a></li>
+              <li><a href="/login/logout">Uitloggen</a></li>
+            </ul>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="content">
+
+        {% if info_message %}
+        <div class="alert-message info fade in">
+          <a class="close" href="#">×</a>
+          <p>{{info_message}}</p>
+        </div>
+        {% endif %}
+        {% if success_message %}
+        <div class="alert-message success fade in">
+          <a class="close" href="#">×</a>
+          <p>{{success_message}}</p>
+        </div>
+        {% endif %}
+        {% if warning_message %}
+        <div class="alert-message warning fade in">
+          <a class="close" href="#">×</a>
+          <p>{{warning_message}}</p>
+        </div>
+        {% endif %}
+        {% if error_message %}
+        <div class="alert-message error fade in">
+          <a class="close" href="#">×</a>
+          <p>{{error_message}}</p>
+        </div>
+        {% endif %}
+        {% block notifications %}
+        {% endblock %}
+
+        <div class="page-header">
+          <h1>{% block title %}{% endblock %}</h1>
+        </div>
+        <div class="row">
+          <div class="span14">
+            {% block main %}
+            {% endblock %}
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <p>&copy; qr.nl 2011</p>
+
+      </footer>
+
+    </div> <!-- /container -->
+
+</body>
+</html>
