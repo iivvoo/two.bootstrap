@@ -11,6 +11,14 @@
     {% endblock %}
     <script src="/static/js/jquery-1.7.min.js"></script>
     <script src="/static/js/bootstrap-alerts.js"></script>
+    <script src="/static/js/bootstrap-dropdown.js"></script>
+    {% block bootstrap_javascript %}
+    <script type="text/javascript" charset="utf-8">
+      $(document).ready(function() {
+        $('.topbar').dropdown();
+      });
+    </script>
+    {% endblock %}
     {% block base_javascript %}
     {% endblock %}
     {% block javascript %}
