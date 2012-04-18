@@ -2,16 +2,26 @@
 <html lang="en">
 <head>
     <meta charset=utf-8">
-    <title>QR</title>
+    <title>Project</title>
 
+    {% block bootstrapcss %}
     <link rel="stylesheet" href="/static/css/bootstrap.min.css" media="screen, projection, print"/>
+    <link rel="stylesheet" href="/static/css/bootstrap-responsive.css" media="screen, projection, print"/>
+    <style type="text/css">
+        body {
+            padding-top: 60px;
+            padding-bottom: 40px;
+        }
+    </style>
+    {% endblock %}
     {% block base_stylesheets %}
     {% endblock %}
     {% block stylesheets %}
     {% endblock %}
+    {% block bootstrapjs %}
     <script src="/static/js/jquery-1.7.min.js"></script>
-    <script src="/static/js/bootstrap-alerts.js"></script>
-    <script src="/static/js/bootstrap-dropdown.js"></script>
+    <script src="/static/js/bootstrap.js"></script>
+    {% endblock %}
     {% block bootstrap_javascript %}
     <script type="text/javascript" charset="utf-8">
       $(document).ready(function() {
@@ -29,19 +39,28 @@
     </script>
 </head>
 <body>
-    <div class="topbar">
-      <div class="fill">
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
         <div class="container">
           {% block topbar %}
-            <a class="brand" href="/">2bootstrap</a>
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+             <!-- not sure yet how this works -->
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+            </a>
+            <a class="brand" href="/">bootstrap</a>
 
+            {% block leftnav %}
             <ul class="nav">
               <li class="active"><a href="/manage/">Home</a></li>
               <li><a href="#">Blog</a></li>
               <li><a href="/about">About</a></li>
               <li><a href="/contact">Contact</a></li>
             </ul>
+            {% endblock %}
             <div class="pull-right">
+              {% block rightnav %}
               {% if user.is_anonymous %}
               <ul class="nav">
                 <li><a href="/signup/">Aanmelden</a></li>
@@ -53,6 +72,7 @@
                 <li><a href="/login/logout">Uitloggen</a></li>
               </ul>
               {% endif %}
+              {% endblock %}
             </div>
           {% endblock %}
         </div>
@@ -60,7 +80,6 @@
     </div>
 
     <div class="container">
-      <div class="content">
 
         {% if info_message %}
         <div class="alert-message info fade in">
@@ -89,22 +108,25 @@
         {% block notifications %}
         {% endblock %}
 
+        <div class="hero-unit">
+        {% block hero %}
+        {% endblock %}
+        </div>
         <div class="page-header">
           <h1>{% block title %}{% endblock %}</h1>
         </div>
         <div class="row">
           {% block base_main %}
-            <div class="span16">
+            <div class="span12">
               {% block main %}
               {% endblock %}
             </div>
           {% endblock %}
         </div>
-      </div>
 
       <footer>
         {% block base_footer %}
-        <p>&copy; m3r 2011</p>
+        <p>&copy; m3r 2012</p>
         {% endblock %}
       </footer>
     </div> 
