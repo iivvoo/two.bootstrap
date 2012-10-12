@@ -140,12 +140,14 @@
         </div>
       </div>
       {% endblock %}
-      <footer class="footer">
-        {% block base_footer %}
-        <p>&copy; m3r 2012</p>
-        {% endblock %}
-      </footer>
-    </div> 
+    </div>
+    <footer class="footer">
+      <div class="container-fluid">
+      {% block base_footer %}
+      <p>&copy; m3r 2012</p>
+      {% endblock %}
+      </div>
+    </footer>
     {% block base_endbody %}
     {% endblock %}
 </body>
