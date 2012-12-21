@@ -21,6 +21,28 @@
               {{ field.help_text }}
             </span>
           </label>
+        {% elif field|fieldtype:'checkboxselectmultiple' %}
+          <label class="control-label" for="{{field.id_for_label}}">{{field.label}}</label>
+          <div class="controls" id="{{field.id_for_label}}">
+            {% for optionid, optionval in field.field.choices %}
+              <label class="checkbox">
+                <input type="checkbox" name="{{field.name}}"
+                       value="{{optionid}}"
+                       {% if optionid in field.value %}checked="checked"{% endif %}>
+                       {{optionval}}
+              </label>
+            {% endfor %}
+            {% if field.errors %}
+              <span class="help-inline pull-right">
+                {% for error in field.errors %}
+                  {{ error }}
+                {% endfor %}
+              </span>
+            {% endif %}
+            <span class="help-block">
+              {{ field.help_text }}
+            </span>
+          </div>
         {% else %}
           <label class="control-label" for="{{field.id_for_label}}">{{field.label}}</label>
           <div class="controls">
