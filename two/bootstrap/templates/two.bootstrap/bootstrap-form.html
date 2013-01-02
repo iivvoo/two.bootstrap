@@ -7,20 +7,22 @@
   <div class="{% if field.errors%}error{%endif%}">
     <div class="control-group {% if field.errors %}error{% endif %}">
         {% if field|fieldtype:'checkboxinput' %}
-          <label class="checkbox">
-            {{field}}
-            {{field.label}}
-            {% if field.errors %}
-              <span class="help-inline pull-right">
-                {% for error in field.errors %}
-                  {{ error }}
-                {% endfor %}
+          <div class="controls">
+            <label class="checkbox">
+              {{field}}
+              {{field.label}}
+              {% if field.errors %}
+                <span class="help-inline pull-right">
+                  {% for error in field.errors %}
+                    {{ error }}
+                  {% endfor %}
+                </span>
+              {% endif %}
+              <span class="help-block">
+                {{ field.help_text }}
               </span>
-            {% endif %}
-            <span class="help-block">
-              {{ field.help_text }}
-            </span>
-          </label>
+            </label>
+          </div>
         {% elif field|fieldtype:'checkboxselectmultiple' %}
           <label class="control-label" for="{{field.id_for_label}}">{{field.label}}</label>
           <div class="controls" id="{{field.id_for_label}}">
