@@ -1,0 +1,25 @@
+{% extends "userena/base_userena_nav.html" %}
+{% load i18n %}
+
+{% block content %}
+
+    <div class="row-fluid">
+      {% block profile_details %}
+        <div class="span3">
+        <img class="mugshot" src="{{ profile.get_mugshot_url }}" alt="{% trans "Your mugshot" %}" />
+        </div>
+        <div class="span9">
+          {% block profile_definition_list %}
+            <p>Admin/Owner/User</p>
+            {% if profile.user.get_full_name %}
+              <strong>{{ profile.user.get_full_name }}</strong>
+            {% endif %}
+            {% if profile.user.email and not hide_email %}
+              <p>{{ profile.user.email }}</p>
+            {% endif %}
+          {% endblock %}
+        </div>
+      {% endblock %}
+    </div>
+
+{% endblock %}

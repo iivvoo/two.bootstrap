@@ -1,0 +1,19 @@
+{# arguments: form legend submit #}
+{% load i18n %}
+
+<legend>{% trans legend %}</legend>
+ {% if form.non_field_errors %}
+ <div class="alert">
+   {% for error in form.non_field_errors %}
+   {{ error }}
+   {% endfor %}
+ </div>
+ {% endif %}
+ <form accept-charset="UTF-8" action="" method="post">
+   {% csrf_token %}
+   {% include "two.bootstrap/bootstrap-form.html" %}
+   <div class="form-actions">
+     <input type="submit" value="{% trans submit %}" class="btn btn-primary" />
+     {% if next %}<input type="hidden" name="next" value="{{ next }}" />{% endif %}
+   </div>
+ </form>
