@@ -4,6 +4,7 @@
   {{ hidden }}
 {% endfor %}
 {% for field in form.visible_fields %}
+  {% if not fields or field.name in fields %}
   <div class="{% if field.errors%}error{%endif%}">
     <div class="control-group {% if field.errors %}error{% endif %}">
         {% if field|fieldtype:'checkboxinput' %}
@@ -65,4 +66,5 @@
         {% endif %}
     </div>
   </div>
+  {% endif %}
 {% endfor %}
