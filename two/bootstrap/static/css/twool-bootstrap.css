@@ -1,0 +1,11 @@
+.navbar-search .search-query {
+    padding-left: 29px;
+}
+
+.navbar-search .icon-search {
+    position: absolute;
+    top: 7px;
+    left: 11px;
+    background-image: url("/static/img/glyphicons-halflings.png");
+}
+
