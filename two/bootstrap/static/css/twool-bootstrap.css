@@ -5,10 +5,12 @@
     padding-left: 29px;
 }
 
+/*
+ * Padding increases by 1, bootstrap does this as well (14 -> 15)
+ */
 .navbar-inverse .navbar-search .search-query:focus,
 .navbar-inverse .navbar-search .search-query.focused {
-
-    padding-left: 29px;
+    padding-left: 30px;
 }
 
 .navbar-search .icon-search {
