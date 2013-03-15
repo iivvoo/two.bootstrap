@@ -1,4 +1,13 @@
-.navbar-search .search-query {
+/*
+ * Provide extra space for a magnify icon
+ */
+.navbar-search input.search-query {
+    padding-left: 29px;
+}
+
+.navbar-inverse .navbar-search .search-query:focus,
+.navbar-inverse .navbar-search .search-query.focused {
+
     padding-left: 29px;
 }
 
