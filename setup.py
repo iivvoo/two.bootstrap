@@ -18,7 +18,7 @@ setup(name='two.bootstrap',
       url='http://github.com/iivvoo/two.bootstrap',
       license='BSD',
       packages=find_packages(exclude=['ez_setup']),
-      namespace_packages=['two'],
+      namespace_packages=['two', 'two.bootstrap'],
       include_package_data=True,
       zip_safe=False,
       install_requires=[
