@@ -1,15 +1,16 @@
 {% extends "userena/two_userena.html" %}
 {% load i18n %}
+{% load url from future %}
 
 {% block base_main %}
 {% block leftnav %}
 <div id="menu-left" class="span2">
   <div class="sidebar-nav">
     <ul class="nav nav-list">
-      <li><a href='{% url userena_profile_detail user.username %}'>{% trans "View profile" %}</a></li>
-  <li><a href='{% url userena_profile_edit user.username %}'>{% trans "Edit details" %}</a></li>
-  <li><a href='{% url userena_password_change user.username %}'>{% trans "Change password" %}</a></li>
-  <li><a href='{% url userena_email_change user.username %}'>{% trans "Change email" %}</a></li>
+      <li><a href='{% url "userena_profile_detail" user.username %}'>{% trans "View profile" %}</a></li>
+  <li><a href='{% url "userena_profile_edit" user.username %}'>{% trans "Edit details" %}</a></li>
+  <li><a href='{% url "userena_password_change" user.username %}'>{% trans "Change password" %}</a></li>
+  <li><a href='{% url "userena_email_change" user.username %}'>{% trans "Change email" %}</a></li>
     </ul>
   </div>
 </div>

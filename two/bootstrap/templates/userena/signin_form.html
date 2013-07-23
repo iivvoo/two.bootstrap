@@ -1,5 +1,6 @@
 {% extends "userena/base_userena.html" %}
 {% load i18n %}
+{% load url from future %}
 
 {% block content %}
 
@@ -16,7 +17,7 @@
 {% include "two.bootstrap/bootstrap-form.html" %}
 <div class="form-actions">
   <input type="submit" value="{% trans "Signin" %}" class="btn btn-primary" />
-  <a href="{% url userena_password_reset %}" class="btn">{% trans "Forgot your password?" %}</a>
+  <a href="{% url "userena_password_reset" %}" class="btn">{% trans "Forgot your password?" %}</a>
   {% if next %}<input type="hidden" name="next" value="{{ next }}" />{% endif %}
 </div>
 
