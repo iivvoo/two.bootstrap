@@ -1,0 +1,24 @@
+<div class="row">
+  <div class="col-lg-12">
+    {% if breadcrumb %}
+    <ol class="breadcrumb">
+      {% for crumb in breadcrumb %}
+      <li {% if forloop.last %}class="active"{% endif %}>
+        {% if crumb.1 %}
+        <a href="{{crumb.1}}">{{crumb.0}}</a>
+        {% else %}
+        {{crumb.0}}
+        {% endif %}
+      </li>
+      {% endfor %}
+    </ol>
+    {% else %}
+    <ol class="breadcrumb">
+        <li>
+            <a href="/">Home</a>
+        </li>
+    </ol>
+    {% endif %}
+  </div>
+</div>
+
