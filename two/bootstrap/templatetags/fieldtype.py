@@ -10,3 +10,7 @@ def fieldtype(field, expected):
     except AttributeError:
         pass
     return False
+
+@register.filter(name='addcss')
+def addcss(field, css):
+    return field.as_widget(attrs={"class":css})
