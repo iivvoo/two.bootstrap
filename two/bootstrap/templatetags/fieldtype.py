@@ -20,5 +20,4 @@ def addcss(field, css):
         orig_class = ""
     attrs['class'] = "%s %s" % (orig_class, css)
 
-    
     return field.as_widget(attrs=attrs)
