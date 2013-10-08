@@ -1,1 +1,15 @@
 /* */
+body {
+    padding-top: 60px; /* compensate for fixed navbar */
+}
+
+@media (max-width: 992px) {
+    body {
+        padding-top: 120px;
+    }
+}
+@media (max-width: 768px) {
+    body {
+        padding-top: 60px;
+    }
+}
