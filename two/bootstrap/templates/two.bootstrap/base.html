@@ -1,9 +1,9 @@
 {% load staticfiles %}
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<!--[if lt IE 7]>      <html {% if html_language %}lang="{{html_language}}" {% endif %}class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html {% if html_language %}lang="{{html_language}}" {% endif %}class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html {% if html_language %}lang="{{html_language}}" {% endif %}class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html {% if html_language %}lang="{{html_language}}" {% endif %}class="no-js"> <!--<![endif]-->
     {% block fragments %} {# required for fragments support #} {% endblock %}
     <head>
         <meta charset="utf-8">
@@ -23,12 +23,6 @@
         {% block beforebootstrapcss %}{% endblock %}
         {% block bootstrapcss %}
         <link rel="stylesheet" href="{% static "css/bootstrap.min.css" %}">
-        <style>
-            body {
-                padding-top: 50px;
-                padding-bottom: 20px;
-            }
-        </style>
         <link rel="stylesheet" href="{% static "css/bootstrap-theme.min.css" %}">
         {% endblock %}
         {% block base_stylesheets %}
