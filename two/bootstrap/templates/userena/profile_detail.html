@@ -3,12 +3,12 @@
 
 {% block content %}
 
-    <div class="row-fluid">
+    <div class="row">
       {% block profile_details %}
-        <div class="span3">
+        <div class="col-md-4">
         <img class="mugshot" src="{{ profile.get_mugshot_url }}" alt="{% trans "Your mugshot" %}" />
         </div>
-        <div class="span9">
+        <div class="col-md-8">
           {% block profile_definition_list %}
             <p>Admin/Owner/User</p>
             {% if profile.user.get_full_name %}
