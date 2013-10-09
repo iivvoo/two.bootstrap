@@ -3,8 +3,8 @@
 {% load url from future %}
 
 {% block base_main %}
-{% block leftnav %}
-<div id="menu-left" class="span2">
+<div class="row">
+<div id="menu-left" class="col-md-2">
   <div class="sidebar-nav">
     <ul class="nav nav-list">
       <li><a href='{% url "userena_profile_detail" user.username %}'>{% trans "View profile" %}</a></li>
@@ -14,9 +14,9 @@
     </ul>
   </div>
 </div>
-{% endblock %}
-<div class="span4 offset3 well">
+<div class="col-md-6 col-md-offset-1 well">
 {% block content %}
 {% endblock %}
+</div>
 </div>
 {% endblock %}
