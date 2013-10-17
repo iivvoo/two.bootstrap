@@ -9,7 +9,8 @@
    {% endfor %}
  </div>
  {% endif %}
- <form accept-charset="UTF-8" action="" method="post">
+ <form accept-charset="UTF-8" action="" method="post"
+       enctype="multipart/form-data">
    {% csrf_token %}
    {% include "two.bootstrap/bootstrap-form.html" %}
    <div class="form-actions">
