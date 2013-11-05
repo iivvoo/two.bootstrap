@@ -164,8 +164,10 @@
     </footer>
     {% endblock %}
 
-    {% block bootstrapjs %}
+    {% block jqueryjs %}
     <script src="{% static "js/vendor/jquery-1.10.1.min.js" %}"><\/script>')</script>
+    {% endblock %}
+    {% block bootstrapjs %}
     <script src="{% static "js/bootstrap.min.js" %}"></script>
     {% endblock %}
     {% block base_javascript %}
