@@ -29,7 +29,9 @@
         <link rel="stylesheet" href="{% static "css/twool-bootstrap.css" %}">
         {% endblock %}
 
+        {% block modernizrjs %}
         <script src="{% static "js/vendor/modernizr-2.6.2-respond-1.1.0.min.js" %}"></script>
+        {% endblock %}
         {% block extra_head %}{% endblock %}
     </head>
     <body class="{%block body_class%}{%endblock%}">
