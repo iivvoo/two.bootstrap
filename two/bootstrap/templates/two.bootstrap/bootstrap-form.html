@@ -8,8 +8,8 @@
 {# some bs3 prototyping #}
 <div class="row checkbox text-danger has-error">
   <label class="">
-  <div class="col-lg-2"></div>
-  <div class="col-lg-10">
+  <div class="col-md-2"></div>
+  <div class="col-md-10">
     <input type="checkbox" value="">
     Option one is this and that&mdash;be sure to include why it's great
     <span class="help-inline pull-right">
@@ -23,8 +23,8 @@
 </div>
 
 <div class="row has-error text-danger">
-  <label class="control-label col-lg-2" for="{{field.id_for_label}}">Wat wil je?</label>
-  <div class="col-lg-10">
+  <label class="control-label col-md-2" for="{{field.id_for_label}}">Wat wil je?</label>
+  <div class="col-md-10">
     <div class="checkbox" id="{{field.id_for_label}}">
           <input type="checkbox" name="{{field.name}}"
                  value="1"
@@ -60,8 +60,8 @@
         {% if field|fieldtype:'checkboxinput' %}
           <div class="row checkbox">
             <label>
-              <div class="col-lg-2">{# where label would have gone #}</div>
-              <div class="col-lg-10">
+              <div class="col-md-2">{# where label would have gone #}</div>
+              <div class="col-md-10">
                 {{field}}
                 {{field.label}}
                 {% if field.errors %}
@@ -74,15 +74,15 @@
                 <span class="help-block">
                   {{ field.help_text }}
                 </span>
-              </div> {# col-lg-10 #}
+              </div> {# col-md-10 #}
             </label>
           </div>
         {% elif field|fieldtype:'checkboxselectmultiple' %}
           <div class="row">
-            <label class="control-label col-lg-2" for="{{field.id_for_label}}">
+            <label class="control-label col-md-2" for="{{field.id_for_label}}">
               {{field.label}}
             </label>
-            <div class="col-lg-10">
+            <div class="col-md-10">
               {% for optionid, optionval in field.field.choices %}
                 <div class="checkbox" id="{{field.id_for_label}}">
                   <input type="checkbox" name="{{field.name}}"
@@ -101,14 +101,14 @@
               <span class="help-block">
                 {{ field.help_text }}
               </span>
-            </div> {# col-lg-10 #}
+            </div> {# col-md-10 #}
           </div> {# row #}
         {% elif field|fieldtype:'radioselect' %}
           <div class="row">
-            <label class="control-label col-lg-2"
+            <label class="control-label col-md-2"
                    for="{{field.id_for_label}}">{{field.label}}
             </label>
-            <div class="col-lg-10">
+            <div class="col-md-10">
             {% for optionid, optionval in field.field.choices %}
               <div class="radio" id="{{field.id_for_label}}">
                     <input type="radio" name="{{field.name}}"
@@ -127,13 +127,13 @@
             <span class="help-block">
               {{ field.help_text }}
             </span>
-            </div> {# col-lg-10 #}
+            </div> {# col-md-10 #}
           </div> {# row #}
         {% else %}
         <div class="form-group {% if field.errors %}has-error{% endif %}">
-          <label class="control-label col-lg-2" for="{{field.id_for_label}}">{{field.label}}</label>
+          <label class="control-label col-md-2" for="{{field.id_for_label}}">{{field.label}}</label>
             {# class=form-control moet op input element zelf #}
-            <div class="col-lg-10">
+            <div class="col-md-10">
               {{ field|addcss:"form-control" }}
               {% if field.help_text %}
                 <p class="help-block">
