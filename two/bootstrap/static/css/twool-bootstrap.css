@@ -1,22 +1,19 @@
-/*
- * Provide extra space for a magnify icon
- */
-.navbar-search input.search-query {
-    padding-left: 29px;
+/* */
+body {
+    padding-top: 60px; /* compensate for fixed navbar */
+    padding-bottom: 40px;
 }
 
-/*
- * Padding increases by 1, bootstrap does this as well (14 -> 15)
- */
-.navbar-inverse .navbar-search .search-query:focus,
-.navbar-inverse .navbar-search .search-query.focused {
-    padding-left: 30px;
+@media (max-width: 992px) {
+    body {
+        padding-top: 120px;
+        padding-bottom: 80px;
+    }
 }
-
-.navbar-search .icon-search {
-    position: absolute;
-    top: 7px;
-    left: 11px;
-    background-image: url("/static/img/glyphicons-halflings.png");
+@media (max-width: 768px) {
+    body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+    }
 }
 

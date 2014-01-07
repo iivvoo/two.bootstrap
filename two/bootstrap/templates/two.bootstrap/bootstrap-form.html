@@ -3,15 +3,94 @@
 {% for hidden in form.hidden_fields %}
   {{ hidden }}
 {% endfor %}
+
+{% if 0 %}
+{# some bs3 prototyping #}
+<div class="row checkbox text-danger has-error">
+  <label class="">
+  <div class="col-md-2"></div>
+  <div class="col-md-10">
+    <input type="checkbox" value="">
+    Option one is this and that&mdash;be sure to include why it's great
+    <span class="help-inline pull-right">
+     Help block
+    </span>
+    <span class="help-block">
+     Help block
+    </span>
+  </div>
+  </label>
+</div>
+
+<div class="row has-error text-danger">
+  <label class="control-label col-md-2" for="{{field.id_for_label}}">Wat wil je?</label>
+  <div class="col-md-10">
+    <div class="checkbox" id="{{field.id_for_label}}">
+          <input type="checkbox" name="{{field.name}}"
+                 value="1"
+                 {% if optionid in field.value %}checked="checked"{% endif %}>
+                 Optie 1
+    </div>
+    <div class="checkbox" id="{{field.id_for_label}}">
+          <input type="checkbox" name="{{field.name}}"
+                 value="2"
+                 {% if optionid in field.value %}checked="checked"{% endif %}>
+                 Optie 2
+    </div>
+    <div class="checkbox" id="{{field.id_for_label}}">
+          <input type="checkbox" name="{{field.name}}"
+                 value="3"
+                 {% if optionid in field.value %}checked="checked"{% endif %}>
+                 Optie 3
+    </div>
+      <span class="help-inline pull-right">
+        FOUT!
+      </span>
+    <span class="help-block">
+      Multi check help text
+    </span>
+  </div>
+</div>
+{% endif %}
+
 {% for field in form.visible_fields %}
   {% if not fields or field.name in fields %}
-  <div class="{% if field.errors%}error{%endif%}">
-    <div class="control-group {% if field.errors %}error{% endif %}">
+  {# bs3 will not mark the label text / help text red on has-error #}
+  <div class="{% if field.errors%}has-error text-danger{%endif%}">
         {% if field|fieldtype:'checkboxinput' %}
-          <div class="controls">
-            <label class="checkbox">
-              {{field}}
+          <div class="row checkbox">
+            <label>
+              <div class="col-md-2">{# where label would have gone #}</div>
+              <div class="col-md-10">
+                {{field}}
+                {{field.label}}
+                {% if field.errors %}
+                  <span class="help-inline pull-right">
+                    {% for error in field.errors %}
+                      {{ error }}
+                    {% endfor %}
+                  </span>
+                {% endif %}
+                <span class="help-block">
+                  {{ field.help_text }}
+                </span>
+              </div> {# col-md-10 #}
+            </label>
+          </div>
+        {% elif field|fieldtype:'checkboxselectmultiple' %}
+          <div class="row">
+            <label class="control-label col-md-2" for="{{field.id_for_label}}">
               {{field.label}}
+            </label>
+            <div class="col-md-10">
+              {% for optionid, optionval in field.field.choices %}
+                <div class="checkbox" id="{{field.id_for_label}}">
+                  <input type="checkbox" name="{{field.name}}"
+                         value="{{optionid}}"
+                         {% if optionid in field.value %}checked="checked"{% endif %}>
+                  {{optionval}}
+                </div>
+              {% endfor %}
               {% if field.errors %}
                 <span class="help-inline pull-right">
                   {% for error in field.errors %}
@@ -22,40 +101,21 @@
               <span class="help-block">
                 {{ field.help_text }}
               </span>
-            </label>
-          </div>
-        {% elif field|fieldtype:'checkboxselectmultiple' %}
-          <label class="control-label" for="{{field.id_for_label}}">{{field.label}}</label>
-          <div class="controls" id="{{field.id_for_label}}">
-            {% for optionid, optionval in field.field.choices %}
-              <label class="checkbox">
-                <input type="checkbox" name="{{field.name}}"
-                       value="{{optionid}}"
-                       {% if optionid in field.value %}checked="checked"{% endif %}>
-                       {{optionval}}
-              </label>
-            {% endfor %}
-            {% if field.errors %}
-              <span class="help-inline pull-right">
-                {% for error in field.errors %}
-                  {{ error }}
-                {% endfor %}
-              </span>
-            {% endif %}
-            <span class="help-block">
-              {{ field.help_text }}
-            </span>
-          </div>
+            </div> {# col-md-10 #}
+          </div> {# row #}
         {% elif field|fieldtype:'radioselect' %}
-          <label class="control-label" for="{{field.id_for_label}}">{{field.label}}</label>
-          <div class="controls" id="{{field.id_for_label}}">
+          <div class="row">
+            <label class="control-label col-md-2"
+                   for="{{field.id_for_label}}">{{field.label}}
+            </label>
+            <div class="col-md-10">
             {% for optionid, optionval in field.field.choices %}
-              <label class="radio">
-                <input type="radio" name="{{field.name}}"
-                       value="{{optionid}}"
-                       {% if optionid == field.value %}checked="checked"{% endif %}>
-                       {{optionval}}
-              </label>
+              <div class="radio" id="{{field.id_for_label}}">
+                    <input type="radio" name="{{field.name}}"
+                           value="{{optionid}}"
+                           {% if optionid == field.value %}checked="checked"{% endif %}>
+                           {{optionval}}
+              </div>
             {% endfor %}
             {% if field.errors %}
               <span class="help-inline pull-right">
@@ -67,16 +127,20 @@
             <span class="help-block">
               {{ field.help_text }}
             </span>
-          </div>
+            </div> {# col-md-10 #}
+          </div> {# row #}
         {% else %}
-          <label class="control-label" for="{{field.id_for_label}}">{{field.label}}</label>
-          <div class="controls">
-            {{ field }}
-            {% if field.help_text %}
-              <span class="help-block">
-                {{ field.help_text }}
-              </span>
-            {% endif %}
+        <div class="form-group {% if field.errors %}has-error{% endif %}">
+          <label class="control-label col-md-2" for="{{field.id_for_label}}">{{field.label}}</label>
+            {# class=form-control moet op input element zelf #}
+            <div class="col-md-10">
+              {{ field|addcss:"form-control" }}
+              {% if field.help_text %}
+                <p class="help-block">
+                  {{ field.help_text }}
+                </p>
+              {% endif %}
+            </div>
             {% if field.errors %}
               <span class="help-inline pull-right">
                 {% for error in field.errors %}
@@ -84,9 +148,8 @@
                 {% endfor %}
               </span>
             {% endif %}
-          </div>
+        </div> {# form-group #}
         {% endif %}
-    </div>
-  </div>
+  </div> {# if error #}
   {% endif %}
 {% endfor %}
