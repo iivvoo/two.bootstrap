@@ -4,55 +4,6 @@
   {{ hidden }}
 {% endfor %}
 
-{% if 0 %}
-{# some bs3 prototyping #}
-<div class="row checkbox text-danger has-error">
-  <label class="">
-  <div class="col-md-2"></div>
-  <div class="col-md-10">
-    <input type="checkbox" value="">
-    Option one is this and that&mdash;be sure to include why it's great
-    <span class="help-inline pull-right">
-     Help block
-    </span>
-    <span class="help-block">
-     Help block
-    </span>
-  </div>
-  </label>
-</div>
-
-<div class="row has-error text-danger">
-  <label class="control-label col-md-2" for="{{field.id_for_label}}">Wat wil je?</label>
-  <div class="col-md-10">
-    <div class="checkbox" id="{{field.id_for_label}}">
-          <input type="checkbox" name="{{field.name}}"
-                 value="1"
-                 {% if optionid in field.value %}checked="checked"{% endif %}>
-                 Optie 1
-    </div>
-    <div class="checkbox" id="{{field.id_for_label}}">
-          <input type="checkbox" name="{{field.name}}"
-                 value="2"
-                 {% if optionid in field.value %}checked="checked"{% endif %}>
-                 Optie 2
-    </div>
-    <div class="checkbox" id="{{field.id_for_label}}">
-          <input type="checkbox" name="{{field.name}}"
-                 value="3"
-                 {% if optionid in field.value %}checked="checked"{% endif %}>
-                 Optie 3
-    </div>
-      <span class="help-inline pull-right">
-        FOUT!
-      </span>
-    <span class="help-block">
-      Multi check help text
-    </span>
-  </div>
-</div>
-{% endif %}
-
 {% for field in form.visible_fields %}
   {% if not fields or field.name in fields %}
   {# bs3 will not mark the label text / help text red on has-error #}
