@@ -22,9 +22,13 @@
                     {% endfor %}
                   </span>
                 {% endif %}
+                {% if angular %}
+                    {% include "two.bootstrap/angular-form-errors.html" %}
+                {% else %}
                 <span class="help-block">
                   {{ field.help_text }}
                 </span>
+                {% endif %}
               </div> {# col-md-10 #}
             </label>
           </div>
@@ -81,7 +85,11 @@
             </div> {# col-md-10 #}
           </div> {# row #}
         {% else %}
-        <div class="form-group {% if field.errors %}has-error{% endif %}">
+        <div class="form-group {% if field.errors %}has-error{% endif %}"
+        {% if angular %}
+        ng-class="{'has-error':{{formname}}.{{field.name}}.$invalid && {{formname}}.{{field.name}}.$dirty}"
+        {% endif %}
+        >
           <label class="control-label col-md-2" for="{{field.id_for_label}}">{{field.label}}</label>
             {# class=form-control moet op input element zelf #}
             <div class="col-md-10">
@@ -91,14 +99,18 @@
                   {{ field.help_text }}
                 </p>
               {% endif %}
+              {% if angular %}
+                {% include "two.bootstrap/angular-form-errors.html" %}
+              {% else %}
+                {% if field.errors %}
+                  <span class="help-inline pull-right">
+                    {% for error in field.errors %}
+                      {{ error }}
+                    {% endfor %}
+                  </span>
+                {% endif %}
+              {% endif %}
             </div>
-            {% if field.errors %}
-              <span class="help-inline pull-right">
-                {% for error in field.errors %}
-                  {{ error }}
-                {% endfor %}
-              </span>
-            {% endif %}
         </div> {# form-group #}
         {% endif %}
   </div> {# if error #}

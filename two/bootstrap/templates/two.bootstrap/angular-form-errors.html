@@ -1,0 +1,18 @@
+{# it seems the with doesn't short-circuit the |filter so fieldname must be defined #}
+
+{% with fieldname=fieldname|default:'' %}
+  {% with fieldname=field.name|default:fieldname %}
+    {% if fieldname %}
+    <p ng-show="{{formname}}.{{fieldname}}.$error.required && {{formname}}.{{fieldname}}.$dirty"
+       class="help-block">
+             Required
+    </p>
+    <p ng-show="{{formname}}.{{fieldname}}.$error.email && {{formname}}.{{fieldname}}.$dirty"
+       class="help-block">
+             Not a valid email address
+    </p>
+    <p ng-show="{{formname}}.{{fieldname}}.$error.minlength && {{formname}}.{{fieldname}}.$dirty" class="help-block">input is too short.</p>
+    <p ng-show="{{formname}}.{{fieldname}}.$error.maxlength && {{formname}}.{{fieldname}}.$dirty" class="help-block">input is too long.</p>
+    {% endif %}
+  {% endwith %}
+{% endwith %}
