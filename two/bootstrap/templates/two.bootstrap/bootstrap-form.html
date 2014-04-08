@@ -91,7 +91,7 @@
         {% endif %}
         >
           <label class="control-label col-md-2" for="{{field.id_for_label}}">{{field.label}}</label>
-            {# class=form-control moet op input element zelf #}
+            {# class=form-control should be on input element, not wrapping div #}
             <div class="col-md-10">
               {{ field|addcss:"form-control" }}
               {% if field.help_text %}
