@@ -42,7 +42,8 @@
         
         {% endblock %}
     </head>
-    <body class="{%block body_class%}{%endblock%}">
+    <body class="{%block body_class%}{%endblock%}"
+          {%block body_attrs%}{%endblock%}>
       {% block bodytop %}{% endblock %}
 
         <!--[if lt IE 7]>
