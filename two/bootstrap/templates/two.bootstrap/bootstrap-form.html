@@ -8,111 +8,13 @@
   {% if not fields or field.name in fields %}
   {# bs3 will not mark the label text / help text red on has-error #}
   <div class="{% if field.errors%}has-error text-danger{%endif%}">
-        {% if field|fieldtype:'checkboxinput' %}
-          <div class="row checkbox">
-            <label>
-              <div class="col-md-2">{# where label would have gone #}</div>
-              <div class="col-md-10">
-                {{field}}
-                {{field.label}}
-                {% if field.errors %}
-                  <span class="help-inline pull-right">
-                    {% for error in field.errors %}
-                      {{ error }}
-                    {% endfor %}
-                  </span>
-                {% endif %}
-                {% if angular %}
-                    {% include "two.bootstrap/angular-form-errors.html" %}
-                {% else %}
-                <span class="help-block">
-                  {{ field.help_text }}
-                </span>
-                {% endif %}
-              </div> {# col-md-10 #}
-            </label>
-          </div>
-        {% elif field|fieldtype:'checkboxselectmultiple' %}
-          <div class="row">
-            <label class="control-label col-md-2" for="{{field.id_for_label}}">
-              {{field.label}}
-            </label>
-            <div class="col-md-10">
-              {% for optionid, optionval in field.field.choices %}
-                <div class="checkbox" id="{{field.id_for_label}}">
-                  <input type="checkbox" name="{{field.name}}"
-                         value="{{optionid}}"
-                         {% if optionid in field.value %}checked="checked"{% endif %}>
-                  {{optionval}}
-                </div>
-              {% endfor %}
-              {% if field.errors %}
-                <span class="help-inline pull-right">
-                  {% for error in field.errors %}
-                    {{ error }}
-                  {% endfor %}
-                </span>
-              {% endif %}
-              <span class="help-block">
-                {{ field.help_text }}
-              </span>
-            </div> {# col-md-10 #}
-          </div> {# row #}
-        {% elif field|fieldtype:'radioselect' %}
-          <div class="row">
-            <label class="control-label col-md-2"
-                   for="{{field.id_for_label}}">{{field.label}}
-            </label>
-            <div class="col-md-10">
-            {% for optionid, optionval in field.field.choices %}
-              <div class="radio" id="{{field.id_for_label}}">
-                    <input type="radio" name="{{field.name}}"
-                           value="{{optionid}}"
-                           {% if optionid == field.value %}checked="checked"{% endif %}>
-                           {{optionval}}
-              </div>
-            {% endfor %}
-            {% if field.errors %}
-              <span class="help-inline pull-right">
-                {% for error in field.errors %}
-                  {{ error }}
-                {% endfor %}
-              </span>
-            {% endif %}
-            <span class="help-block">
-              {{ field.help_text }}
-            </span>
-            </div> {# col-md-10 #}
-          </div> {# row #}
+      {% with template_for_field=field|field_template %}
+        {% if template_for_field|template_exists %}
+          {% include template_for_field %}
         {% else %}
-        <div class="form-group {% if field.errors %}has-error{% endif %}"
-        {% if angular %}
-        ng-class="{'has-error':{{formname}}.{{field.name}}.$invalid && {{formname}}.{{field.name}}.$dirty}"
+          {% include "two.bootstrap/fields/default.html" %}
         {% endif %}
-        >
-          <label class="control-label col-md-2" for="{{field.id_for_label}}">{{field.label}}</label>
-          {# class=form-control should be on input element, not wrapping div #}
-          <div class="col-md-10">
-            {{ field|addcss:"form-control" }}
-            {% if field.help_text %}
-              <p class="help-block">
-                {{ field.help_text }}
-              </p>
-            {% endif %}
-            {% if angular %}
-              {% include "two.bootstrap/angular-form-errors.html" %}
-            {% else %}
-              {% if field.errors %}
-                <span class="help-inline pull-right">
-                  {% for error in field.errors %}
-                    {{ error }}
-                  {% endfor %}
-                </span>
-              {% endif %}
-            {% endif %}
-          </div>
-        </div> {# form-group #}
-        {% endif %}
+      {% endwith %}
   </div> {# if error #}
   {% endif %}
 {% endfor %}

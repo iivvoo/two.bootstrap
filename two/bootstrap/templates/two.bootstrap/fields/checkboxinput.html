@@ -1,0 +1,23 @@
+          <div class="row checkbox">
+            <label>
+              <div class="col-md-2">{# where label would have gone #}</div>
+              <div class="col-md-10">
+                {{field}}
+                {{field.label}}
+                {% if field.errors %}
+                  <span class="help-inline pull-right">
+                    {% for error in field.errors %}
+                      {{ error }}
+                    {% endfor %}
+                  </span>
+                {% endif %}
+                {% if angular %}
+                    {% include "two.bootstrap/angular-form-errors.html" %}
+                {% else %}
+                <span class="help-block">
+                  {{ field.help_text }}
+                </span>
+                {% endif %}
+              </div> {# col-md-10 #}
+            </label>
+          </div>

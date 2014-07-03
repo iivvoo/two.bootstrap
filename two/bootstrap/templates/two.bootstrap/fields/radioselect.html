@@ -1,0 +1,25 @@
+          <div class="row">
+            <label class="control-label col-md-2"
+                   for="{{field.id_for_label}}">{{field.label}}
+            </label>
+            <div class="col-md-10">
+            {% for optionid, optionval in field.field.choices %}
+              <div class="radio" id="{{field.id_for_label}}">
+                    <input type="radio" name="{{field.name}}"
+                           value="{{optionid}}"
+                           {% if optionid == field.value %}checked="checked"{% endif %}>
+                           {{optionval}}
+              </div>
+            {% endfor %}
+            {% if field.errors %}
+              <span class="help-inline pull-right">
+                {% for error in field.errors %}
+                  {{ error }}
+                {% endfor %}
+              </span>
+            {% endif %}
+            <span class="help-block">
+              {{ field.help_text }}
+            </span>
+            </div> {# col-md-10 #}
+          </div> {# row #}

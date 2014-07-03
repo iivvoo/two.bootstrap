@@ -1,4 +1,5 @@
 from django import template
+from django.template.defaultfilters import stringfilter
 
 register = template.Library()
 
@@ -10,6 +11,19 @@ def fieldtype(field, expected):
     except AttributeError:
         pass
     return False
+
+@register.filter(name='field_template')
+def field_template(field):
+    return "two.bootstrap/fields/%s.html" % field.field.widget.__class__.__name__.lower()
+
+@register.filter
+@stringfilter
+def template_exists(value):
+    try:
+        template.loader.get_template(value)
+        return True
+    except template.TemplateDoesNotExist:
+        return False
 
 @register.filter(name='addcss')
 def addcss(field, css):

@@ -1,0 +1,29 @@
+{% load fieldtype %}
+
+        <div class="form-group {% if field.errors %}has-error{% endif %}"
+        {% if angular %}
+        ng-class="{'has-error':{{formname}}.{{field.name}}.$invalid && {{formname}}.{{field.name}}.$dirty}"
+        {% endif %}
+        >
+          <label class="control-label col-md-2" for="{{field.id_for_label}}">{{field.label}}</label>
+          {# class=form-control should be on input element, not wrapping div #}
+          <div class="col-md-10">
+            {{ field|addcss:"form-control" }}
+            {% if field.help_text %}
+              <p class="help-block">
+                {{ field.help_text }}
+              </p>
+            {% endif %}
+            {% if angular %}
+              {% include "two.bootstrap/angular-form-errors.html" %}
+            {% else %}
+              {% if field.errors %}
+                <span class="help-inline pull-right">
+                  {% for error in field.errors %}
+                    {{ error }}
+                  {% endfor %}
+                </span>
+              {% endif %}
+            {% endif %}
+          </div>
+        </div> {# form-group #}
